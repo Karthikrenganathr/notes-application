@@ -1,0 +1,115 @@
+<html>
+    <head>
+        <title>Test Mini Project</title>
+        <script type="module" src="./src/index.js"></script>
+        <link rel="stylesheet" href="./index.css">
+        <link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" rel="stylesheet" />
+        <script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
+    </head>
+    <body>
+        <div class="notepg">
+            <div class="header">
+                <div class="header__menuBarContainer header--divCircle">
+                    <img src="./img/main_menu.svg" class="header__menuBarContainer__bar">
+                </div>
+                <div class="header__logo"> 
+                    <div class="header__logo__imgContainer">
+                        <img src="./img/keeplogo.png" class="header__logo_imgContainer__logoimg">
+                    </div>
+                    <div class="header__logo__appName">
+                        Keep
+                    </div>
+                </div>
+                <div class="header__searchContainer">
+                    <div class="header__searchContainer__imgCon header--divCircle">
+                        <img class="header__searchContainer__imgCon__img" src="./img/search.svg" >
+                    </div>
+                    <input type="text" class="header__searchContainer__search" placeholder="search" onclick="showClose()">
+                    <div class="header__searchContainer__imgCon header--divCircle header__searchContainer--close" onclick="clearSearch(this)">
+                        <img class="header__searchContainer__imgCon__img" src="./img/close.svg" >
+                    </div>
+                </div>
+                <div class="header__opsContainer">
+                    <div class="header__opsContainer__imgContainer header--divCircle">
+                        <img src="./img/reload.svg" class="header__opsContainer__imgContainer__img">
+                    </div>
+                    <div class="header__opsContainer__imgContainer header--divCircle">
+                        <img src="./img/setting.svg" class="header__opsContainer__imgContainer__img">
+                    </div>
+                    <div class="header__opsContainer__imgContainer header--divCircle">
+                        <img src="./img/column.svg" class="header__opsContainer__imgContainer__img">
+                    </div>
+                </div>
+                <div class="header__credentials">
+                    <div class="header__credentials__imgContainer header--divCircle">
+                        <img src="./img/moreapps.svg" class="header__credentials__imgContainer__img">
+                    </div>
+                    <div class="header__credentials__imgContainer header--divCircle">
+                        <img src="./img/userlogo.png" class="header__credentials__imgContainer__img">
+                    </div>
+                </div>
+            </div>
+            <div class="sidesection"> 
+                <div class="sidesection__container header--divCircle sidesection__currenthighlighter" id="mainpage_navigation">
+                    <img src="./img/sidebar/notes.svg" class="sidesection__container__img">
+                </div>
+                <div class="sidesection__container header--divCircle" id="trashpage_navigation">
+                    <img src="./img/sidebar/delete.svg" class="sidesection__container__img sidesection__decrheight">
+                </div>
+            </div>
+            <div class="notes">
+            </div>
+        </div>
+        <div id="toaster" class="toaster"></div>
+    </body>
+    <script>
+        function expandTitle() {
+            const titleDiv = document.querySelector(".notes__creatediv__titlediv");
+            const optionsDiv = document.querySelector(".notes__creatediv__createOptionscon");
+            titleDiv.style.display = "block";
+            optionsDiv.style.display = "block";
+        }
+        function headerPinUnpin() {
+            // CR: Avoid using window varaible, use pinned status of the note
+            // comment for below bind this function in html
+            const imgElement = document.querySelector(".notes__creatediv__titlediv__pinContainer__img");
+            const isPinned = imgElement.getAttribute("data-ispinned") === "true";
+            if (isPinned) {
+                imgElement.setAttribute("src", "../../img/note/pin.svg");
+                imgElement.setAttribute("alt", "header unpin");
+                imgElement.setAttribute("data-ispinned", "false");
+            } else {
+                imgElement.setAttribute("src", "../../img/note/unpin.svg");
+                imgElement.setAttribute("alt", "header pin");
+                imgElement.setAttribute("data-ispinned", "true");
+            }
+        }
+        function clearNotes(){
+            document.querySelector("#newNoteTitle").value = "";
+            document.querySelector(".notes__creatediv__content__enter").value = "";
+            document.querySelector(".notes__creatediv__titlediv").style.display="none";
+            document.querySelector(".notes__creatediv__createOptionscon").style.display="none";
+            const imgElement = document.querySelector(".notes__creatediv__titlediv__pinContainer__img");
+            const isPinned = imgElement.getAttribute("data-ispinned") === "true";
+            if (isPinned) {
+                imgElement.setAttribute("src", "../../img/note/pin.svg");
+                imgElement.setAttribute("alt", "header unpin");
+                imgElement.setAttribute("data-ispinned", "false");
+            } 
+        }
+        function editClick(element) {
+            if (element.getAttribute("data-isClicked") === "false") {  
+                element.setAttribute("data-isClicked", "true");
+            } 
+        }
+        function showClose(){
+            document.querySelector('.header__searchContainer--close').style.display="inline-block";
+        }
+        function clearSearch(closeElement){
+            const input = document.querySelector(".header__searchContainer__search");
+            input.value = ""; 
+            input.dispatchEvent(new Event('input'));
+            closeElement.style.display="none";
+        }
+    </script>
+</html>
