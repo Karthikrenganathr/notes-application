@@ -1,0 +1,33 @@
+<!-- CR: Use this as component in main page -->
+<div class="notes__creatediv">
+    <div class="notes__creatediv__titlediv">
+        <textarea placeholder="Title" class="notes__creatediv__content__enter notes__creatediv__titlediv__decrheight"></textarea>
+        <div class="notes__creatediv__titlediv__pinContainer header--divCircle" onclick="headerPinUnpin()">
+            <img src="./img/notes/pin.svg" alt="header pin" class="notes__creatediv__titlediv__pinContainer__img" data-ispinned="false">
+        </div>
+    </div>
+    <div class="notes__creatediv__content ">
+        <textarea placeholder="Take a note..." id="newNoteTitle" class="notes__creatediv__content__enter" onfocus="expandTitle()"></textarea>
+    </div>
+    <div class="notes__creatediv__createOptionscon">
+        <div class="notes__creatediv__createOptionscon__options">
+
+        </div>
+        <div class="notes__creatediv__createOptionscon__closecon" onclick="clearNotes()">
+            Close
+        </div>
+        <div class="notes__creatediv__createOptionscon__savecon">
+            Save
+        </div>
+    </div>
+</div>
+<div class="notes__pin">
+    <div class="notes__pin__text">PINNED</div>
+    <div class="notes__pin__noteCon">
+    </div>
+</div>
+<div class="notes__unpin">
+    <div class="notes__unpin__text" onclick="showToast()">OTHERS</div>
+    <div class="notes__unpin__noteCon">
+    </div>
+</div>

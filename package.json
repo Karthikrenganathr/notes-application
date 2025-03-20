@@ -1,0 +1,24 @@
+{
+  "name": "mini-project",
+  "version": "1.0.0",
+  "description": "Mini Project Internship 2025",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "author": "prem.kumar@zoomrx.com",
+  "license": "ISC",
+  "dependencies": {
+    "msw": "^2.7.0"
+  },
+  "msw": {
+    "workerDirectory": [
+      "public"
+    ]
+  },
+  "devDependencies": {
+    "vite": "^6.1.0"
+  }
+}
